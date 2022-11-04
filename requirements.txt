@@ -35,3 +35,5 @@ rich
 gitpython
 openpyxl
 scapy
+jupyterhub
+notebook
