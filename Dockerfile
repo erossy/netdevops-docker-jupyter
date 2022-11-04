@@ -6,7 +6,7 @@ ENV PATH="/root/.local/bin:$PATH" \
     PYTHONUNBUFFERED=1
 
 RUN apt-get update \
-    && apt-get install -yq curl git pandoc make vim wget npm nodejs sssd libpam-sss libnss-sss\
+    && apt-get install -yq curl git pandoc make vim wget npm nodejs sssd sssd-ldap ldap-utils\
     && apt-get -y upgrade \
     && curl -sSL https://install.python-poetry.org | python \
     && poetry config virtualenvs.create false \
@@ -23,6 +23,8 @@ RUN rm -f /var/run/sssd.pid
 RUN sssd
 
 RUN pam-auth-update --enable mkhomedir
+
+COPY sssd.conf /etc/sssd/sssd.conf
 
 RUN useradd -u 111 -m netdevops && echo netdevops:netdevops | chpasswd
 
