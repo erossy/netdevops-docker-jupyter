@@ -20,11 +20,11 @@ RUN sleep 1
 
 RUN rm -f /var/run/sssd.pid
 
-RUN sssd
-
 RUN pam-auth-update --enable mkhomedir
 
 COPY sssd.conf /etc/sssd/sssd.conf
+
+RUN ssd
 
 RUN useradd -u 111 -m netdevops && echo netdevops:netdevops | chpasswd
 
