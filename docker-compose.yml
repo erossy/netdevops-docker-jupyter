@@ -1,6 +1,6 @@
 services:
   ldap:
-    image: jgnagy/testldap:latest
+    image: rroemhild/test-openldap:latest
     mem_limit: 536870912 # 512M
     privileged: true
     # Uncomment the port to access LDAP from your machine
