@@ -24,6 +24,8 @@ RUN pam-auth-update --enable mkhomedir
 
 COPY sssd.conf /etc/sssd/sssd.conf
 
+RUN chmod 600 /etc/sssd/sssd.conf
+
 RUN sssd
 
 RUN useradd -u 111 -m netdevops && echo netdevops:netdevops | chpasswd
