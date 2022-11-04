@@ -6,7 +6,7 @@ ENV PATH="/root/.local/bin:$PATH" \
     PYTHONUNBUFFERED=1
 
 RUN apt-get update \
-    && apt-get install -yq curl git pandoc make vim wget npm nodejs sssd-ldap ldap-utils\
+    && apt-get install -yq curl git pandoc make vim wget npm nodejs sssd libpam-sss libnss-sss\
     && apt-get -y upgrade \
     && curl -sSL https://install.python-poetry.org | python \
     && poetry config virtualenvs.create false \
