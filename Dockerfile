@@ -12,7 +12,7 @@ RUN apt-get update \
     && poetry config virtualenvs.create false \
     && npm install -g configurable-http-proxy
 
-RUN useradd -u 111 -m netdevops
+RUN useradd -u 111 -m netdevops && echo netdevops:netdevops | chpasswd
 
 WORKDIR /home/netdevops
 
