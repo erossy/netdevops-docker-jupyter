@@ -20,7 +20,7 @@ RUN sleep 1
 
 RUN rm -f /var/run/sssd.pid
 
-RUN systemctl start sssd.service
+RUN sssd
 
 RUN pam-auth-update --enable mkhomedir
 
