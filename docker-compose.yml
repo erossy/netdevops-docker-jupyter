@@ -10,6 +10,8 @@ services:
   testbox:
     build:
       context: ./
+      args:
+        PYTHON: 3.8
       dockerfile: ./Dockerfile
     depends_on:
     - ldap
