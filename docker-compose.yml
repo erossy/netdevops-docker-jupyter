@@ -1,0 +1,17 @@
+services:
+  ldap:
+    image: jgnagy/testldap:latest
+    mem_limit: 536870912 # 512M
+    privileged: true
+    # Uncomment the port to access LDAP from your machine
+    # ports:
+    # - "389:389"
+ 
+  testbox:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    depends_on:
+    - ldap
+    links:
+    - ldap:ldap
