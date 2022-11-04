@@ -10,8 +10,6 @@ services:
   testbox:
     build:
       context: ./
-      ports:
-        - "8000:8000"
       args:
         PYTHON: 3.8
       dockerfile: ./Dockerfile
@@ -19,3 +17,5 @@ services:
     - ldap
     links:
     - ldap:ldap
+    ports:
+    - "8000:8000"
