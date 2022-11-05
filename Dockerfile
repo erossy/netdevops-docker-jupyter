@@ -6,23 +6,17 @@ ENV PATH="/root/.local/bin:$PATH" \
     PYTHONUNBUFFERED=1
 
 RUN apt-get update \
-    && apt-get install -yq sssd-ldap ldap-utils \
+    && apt-get install -yq sssd \
     && apt-get -y upgrade
 
 COPY sssd.conf /etc/sssd/sssd.conf
 
-COPY nsswitch.conf /etc/nsswitch.conf
-
-RUN chmod 600 /etc/sssd/sssd.conf
-
-RUN mkdir -p /var/lib/sss/db
-
-RUN mkdir -p /var/lib/sss/pipes/private
-
-RUN mkdir -p /var/lib/sss/mc
-
 RUN sssd
 
-RUN pam-auth-update --enable mkhomedir
+COPY nsswitch.conf /etc/nsswitch.conf
+
+RUN sed -i '6iauth        sufficient    pam_sss.so use_first_pass' /etc/pam.d/common-auth
+
+RUN sed -i '6iauth        sufficient    pam_sss.so use_first_pass' /etc/pam.d/common-auth
 
 CMD ["sssd", "-i"]
