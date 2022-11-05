@@ -23,6 +23,6 @@ RUN mkdir -p /var/lib/sss/mc
 
 RUN sssd
 
-RUN pam-auth-update
+RUN pam-auth-update --enable mkhomedir
 
 CMD ["sssd", "-i"]
