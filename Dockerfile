@@ -21,7 +21,7 @@ RUN mkdir -p /var/lib/sss/pipes/private
 
 RUN mkdir -p /var/lib/sss/mc
 
-RUN sssd -i -d 4
+RUN sssd
 
 RUN useradd -u 111 -m netdevops && echo netdevops:netdevops | chpasswd
 
