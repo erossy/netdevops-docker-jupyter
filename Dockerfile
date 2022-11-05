@@ -23,4 +23,4 @@ RUN mkdir -p /var/lib/sss/mc
 
 RUN sssd
 
-CMD [/bin/bash]
+CMD [/bin/sh]
