@@ -11,7 +11,7 @@ RUN apt-get update \
 
 COPY sssd.conf /etc/sssd/sssd.conf
 
-RUN sleep 1
+RUN chmod 600 /etc/sssd/sssd.conf
 
 RUN sssd
 
