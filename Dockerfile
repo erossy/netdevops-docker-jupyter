@@ -33,4 +33,4 @@ ENV PATH="/home/netdevops/.local/bin:${PATH}"
 
 WORKDIR /opt/netdevops
 
-ENTRYPOINT [/bin/bash]
+CMD [tail -f /dev/null]
