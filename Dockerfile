@@ -21,8 +21,4 @@ RUN mkdir -p /var/lib/sss/pipes/private
 
 RUN mkdir -p /var/lib/sss/mc
 
-RUN sssd
-
-RUN useradd -u 111 -m netdevops && echo netdevops:netdevops | chpasswd
-
-CMD ["tail -f /dev/null"]
+CMD ["sssd", "-i"]
