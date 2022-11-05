@@ -33,4 +33,4 @@ ENV PATH="/home/netdevops/.local/bin:${PATH}"
 
 WORKDIR /opt/netdevops
 
-CMD [/bin/sh]
+ENTRYPOINT [/bin/bash]
