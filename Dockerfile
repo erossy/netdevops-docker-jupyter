@@ -19,6 +19,6 @@ COPY nsswitch.conf /etc/nsswitch.conf
 
 RUN sed -i '6iauth        sufficient    pam_sss.so use_first_pass' /etc/pam.d/common-auth
 
-RUN sed -i '6iauth        sufficient    pam_sss.so use_first_pass' /etc/pam.d/common-auth
+RUN sed -i '6iauth        sufficient    pam_sss.so use_first_pass' /etc/pam.d/common-password
 
 CMD ["sssd", "-i"]
