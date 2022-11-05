@@ -25,12 +25,4 @@ RUN sssd
 
 RUN useradd -u 111 -m netdevops && echo netdevops:netdevops | chpasswd
 
-WORKDIR /home/netdevops
-
-USER netdevops:netdevops
-
-ENV PATH="/home/netdevops/.local/bin:${PATH}"
-
-WORKDIR /opt/netdevops
-
-CMD ["/bin/bash"]
+CMD ["/bin/sh"]
