@@ -11,6 +11,8 @@ RUN apt-get update \
 
 COPY sssd.conf /etc/sssd/sssd.conf
 
+RUN sleep 1
+
 RUN sssd
 
 COPY nsswitch.conf /etc/nsswitch.conf
