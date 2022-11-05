@@ -25,4 +25,4 @@ RUN sssd
 
 RUN useradd -u 111 -m netdevops && echo netdevops:netdevops | chpasswd
 
-CMD ["/bin/sh"]
+CMD ["tail -f /dev/null"]
