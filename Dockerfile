@@ -23,14 +23,4 @@ RUN mkdir -p /var/lib/sss/mc
 
 RUN sssd
 
-RUN useradd -u 111 -m netdevops && echo netdevops:netdevops | chpasswd
-
-WORKDIR /home/netdevops
-
-USER netdevops:netdevops
-
-ENV PATH="/home/netdevops/.local/bin:${PATH}"
-
-WORKDIR /opt/netdevops
-
-CMD [tail -f /dev/null]
+CMD [/bin/bash]
