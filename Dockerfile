@@ -18,8 +18,6 @@ RUN sed -i 's/\(^passwd.*\)/\1 ldap/g' /etc/nsswitch.conf \
 
 RUN echo 'session required        pam_mkhomedir.so skel=/etc/skel umask=077' >> /etc/pam.d/common-session
 
-RUN service nscd restart
-
 RUN useradd -u 111 -m netdevops && echo netdevops:netdevops | chpasswd
 
 WORKDIR /home/netdevops
