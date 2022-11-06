@@ -24,9 +24,9 @@ WORKDIR /home/netdevops
 
 COPY --chown=netdevops:netdevops requirements.txt requirements.txt
 
-ADD jupyterhub_config.py /opt/netdevops/jupyterhub_config.py
+COPY --chown=netdevops:netdevops jupyterhub_config.py /opt/netdevops/jupyterhub_config.py
 
-ADD create-user.py /home/netdevops/create-user.py
+COPY --chown=netdevops:netdevops create-user.py /home/netdevops/create-user.py
 
 USER netdevops:netdevops
 
