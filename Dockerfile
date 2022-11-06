@@ -6,27 +6,19 @@ ENV PATH="/root/.local/bin:$PATH" \
     PYTHONUNBUFFERED=1
 
 RUN apt-get update \
-    && apt-get install -yq curl git pandoc make vim wget npm nodejs sssd sssd-ldap ldap-utils\
+    && apt-get install -yq curl git pandoc make vim wget npm nodejs \
     && apt-get -y upgrade \
-    && curl -sSL https://install.python-poetry.org | python \
-    && poetry config virtualenvs.create false \
     && npm install -g configurable-http-proxy
 
-COPY sssd.conf /etc/sssd/sssd.conf
+COPY ldap.conf /etc/ldap/ldap.conf
 
-RUN chmod 600 /etc/sssd/sssd.conf
+RUN sed -i 's/\(^passwd.*\)/\1 ldap/g' /etc/nsswitch.conf \
+    && sed -i 's/\(^group.*\)/\1 ldap/g' /etc/nsswitch.conf \
+    && sed -i 's/\(^shadow.*\)/\1 ldap/g' /etc/nsswitch.conf
 
-RUN sleep 1
+RUN echo 'session required        pam_mkhomedir.so skel=/etc/skel umask=077' >> /etc/pam.d/common-session
 
-RUN rm -f /var/run/sssd.pid
-
-RUN pam-auth-update --enable mkhomedir
-
-COPY sssd.conf /etc/sssd/sssd.conf
-
-RUN chmod 600 /etc/sssd/sssd.conf
-
-RUN sssd
+RUN service nscd restart
 
 RUN useradd -u 111 -m netdevops && echo netdevops:netdevops | chpasswd
 
