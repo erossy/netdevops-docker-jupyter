@@ -6,18 +6,15 @@ ENV PATH="/root/.local/bin:$PATH" \
     PYTHONUNBUFFERED=1
 
 RUN apt-get update \
-    && apt-get install -yq curl git pandoc make vim wget npm nodejs \
+    && apt-get install -yq curl git pandoc make vim wget npm nodejs sssd-client libpam\
     && apt-get install -qq libnss-ldap libpam-ldap ldap-utils  \
     && apt-get -y upgrade \
     && npm install -g configurable-http-proxy
 
-COPY ldap.conf /etc/ldap/ldap.conf
+RUN sed -i 's/\(^passwd.*\)/\1 sss/g' /etc/nsswitch.conf \
+    && sed -i 's/\(^group.*\)/\1 sss/g' /etc/nsswitch.conf 
 
-RUN sed -i 's/\(^passwd.*\)/\1 ldap/g' /etc/nsswitch.conf \
-    && sed -i 's/\(^group.*\)/\1 ldap/g' /etc/nsswitch.conf \
-    && sed -i 's/\(^shadow.*\)/\1 ldap/g' /etc/nsswitch.conf
-
-RUN echo 'session required        pam_mkhomedir.so skel=/etc/skel umask=077' >> /etc/pam.d/common-session
+RUN pam-auth-update --enable sss
 
 RUN useradd -u 111 -m netdevops && echo netdevops:netdevops | chpasswd
 
