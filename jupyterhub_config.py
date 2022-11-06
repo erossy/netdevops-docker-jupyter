@@ -754,4 +754,4 @@ c.JupyterHub.authenticator_class = 'ldapauthenticator.LDAPAuthenticator'
 c.LDAPAuthenticator.use_ssl = False
 c.LDAPAuthenticator.server_address = 'ldap' 
 c.LDAPAuthenticator.bind_dn_template = 'cn=admin,dc=planetexpress,dc=com'
-LDAPAuthenticator.server_port = '10389'
+c.LDAPAuthenticator.server_port = '10389'
