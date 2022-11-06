@@ -24,16 +24,14 @@ WORKDIR /home/netdevops
 
 COPY --chown=netdevops:netdevops requirements.txt requirements.txt
 
-COPY --chown=netdevops:netdevops jupyterhub_config.py /opt/netdevops/jupyterhub_config.py
+COPY --chown=netdevops:netdevops jupyterhub_config.py jupyterhub_config.py
 
-COPY --chown=netdevops:netdevops create-user.py /home/netdevops/create-user.py
+COPY --chown=netdevops:netdevops create-user.py create-user.py
 
 USER netdevops:netdevops
 
 RUN pip3 install --user --no-cache-dir -r requirements.txt
 
 ENV PATH="/home/netdevops/.local/bin:${PATH}"
-
-WORKDIR /opt/netdevops
 
 CMD ["jupyterhub", "--ip=0.0.0.0", "--port=8000", "--no-ssl"]
