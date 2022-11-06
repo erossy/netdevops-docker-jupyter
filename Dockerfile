@@ -6,7 +6,8 @@ ENV PATH="/root/.local/bin:$PATH" \
     PYTHONUNBUFFERED=1
 
 RUN apt-get update \
-    && apt-get install -yq curl git pandoc make vim wget npm nodejs libnss-ldap libpam-ldap ldap-utils  \
+    && apt-get install -yq curl git pandoc make vim wget npm nodejs \
+    && apt-get install -qq libnss-ldap libpam-ldap ldap-utils  \
     && apt-get -y upgrade \
     && npm install -g configurable-http-proxy
 
