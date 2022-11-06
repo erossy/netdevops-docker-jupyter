@@ -6,7 +6,7 @@ ENV PATH="/root/.local/bin:$PATH" \
     PYTHONUNBUFFERED=1
 
 RUN apt-get update \
-    && apt-get install -yq curl git pandoc make vim wget npm nodejs sssd-client libpam \
+    && apt-get install -yq curl git pandoc make vim wget npm nodejs libpam-sss \
     && apt-get -y upgrade \
     && npm install -g configurable-http-proxy
 
